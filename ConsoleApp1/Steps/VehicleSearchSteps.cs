@@ -202,5 +202,13 @@ namespace Just4Fun.ConsoleApp1.Steps
 
             searchVehiclesPage.TapOnSearchVehicleButton();
         }
+
+        [StepDefinition(@"For testing")]
+        public async Task ISearchForANewlyCreatedVehicleYhOJO(string vehicleVRM, string motStatus)
+        {
+            await ScenarioState.DealerProApi.DeleteVehicleIfExists(vehicleVRM);
+            await ScenarioState.DealerProApi.CreateVehicle(vehicleVRM, motStatus);
+            FindVehicle(vehicleVRM);
+        }
     }
 }

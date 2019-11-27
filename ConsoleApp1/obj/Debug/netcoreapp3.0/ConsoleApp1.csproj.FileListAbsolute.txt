@@ -354,3 +354,6 @@ C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\obj\Debug\netcoreapp3.0\C
 C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.xml
 C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.pdb
 C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\bin\Debug\netcoreapp3.0\specflow.json
+C:\Users\lavinia.faragau\Documents\ExplorationDayProj\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.dll
+C:\Users\lavinia.faragau\Documents\ExplorationDayProj\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.xml
+C:\Users\lavinia.faragau\Documents\ExplorationDayProj\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.pdb
