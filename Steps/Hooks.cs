@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using IosAndroidSpecflowExample.Helpers;
 using IosAndroidSpecflowExample.Reporting;
 using IosAndroidSpecflowExample.Settings;
@@ -64,7 +62,7 @@ namespace IosAndroidSpecflowExample.Steps
         }
 
         [BeforeScenario]
-        public async Task BeforeScenario()
+        public void BeforeScenario()
         {
             TestLogger.CurrentTextWriter = TestContext.Out;
 
