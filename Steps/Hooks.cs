@@ -4,15 +4,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AndroidIosCucumberExampleNetcore.Helpers;
-using AndroidIosCucumberExampleNetcore.Reporting;
-using AndroidIosCucumberExampleNetcore.Settings;
+using IosAndroidSpecflowExample.Helpers;
+using IosAndroidSpecflowExample.Reporting;
+using IosAndroidSpecflowExample.Settings;
 using NUnit.Framework;
 using SpecNuts;
 using SpecNuts.Json;
 using TechTalk.SpecFlow;
 
-namespace AndroidIosCucumberExampleNetcore.Steps
+namespace IosAndroidSpecflowExample.Steps
 {
     [Binding]
     public class Hooks : ReportingStepDefinitions

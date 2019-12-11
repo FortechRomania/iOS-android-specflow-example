@@ -2,7 +2,7 @@
 using System.Linq;
 using SpecNuts.Model;
 
-namespace AndroidIosCucumberExampleNetcore.Reporting
+namespace IosAndroidSpecflowExample.Reporting
 {
     public class ScreenshotEmbedder
     {

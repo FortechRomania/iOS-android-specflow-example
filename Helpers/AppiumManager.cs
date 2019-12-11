@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using AndroidIosCucumberExampleNetcore.Settings;
+using IosAndroidSpecflowExample.Settings;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.Windows;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     public class AppiumManager
     {

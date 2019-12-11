@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 using PointerInputDevice = OpenQA.Selenium.Appium.Interactions.PointerInputDevice;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     public class Helper
     {

@@ -1,7 +1,7 @@
-﻿using AndroidIosCucumberExampleNetcore.Helpers;
+﻿using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 
-namespace AndroidIosCucumberExampleNetcore.Pages
+namespace IosAndroidSpecflowExample.Pages
 {
     public class BasePage
     {

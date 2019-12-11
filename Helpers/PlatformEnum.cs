@@ -1,4 +1,4 @@
-﻿namespace AndroidIosCucumberExampleNetcore.Helpers
+﻿namespace IosAndroidSpecflowExample.Helpers
 {
     public enum PlatformEnum
     {

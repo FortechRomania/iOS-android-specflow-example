@@ -1,10 +1,10 @@
-﻿using AndroidIosCucumberExampleNetcore.Helpers;
-using AndroidIosCucumberExampleNetcore.Pages;
+﻿using IosAndroidSpecflowExample.Helpers;
+using IosAndroidSpecflowExample.Pages;
 using FluentAssertions;
 using SpecNuts;
 using TechTalk.SpecFlow;
 
-namespace AndroidIosCucumberExampleNetcore.Steps
+namespace IosAndroidSpecflowExample.Steps
 {
     [Binding]
     public class AcquaintanceDetailsSteps : ReportingStepDefinitions

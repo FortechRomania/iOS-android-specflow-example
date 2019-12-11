@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using AndroidIosCucumberExampleNetcore.Settings;
+using IosAndroidSpecflowExample.Settings;
 using OpenQA.Selenium.Appium.Service;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     public class AppiumServer
     {

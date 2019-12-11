@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     public class ScenarioState
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     public class Constants
     {

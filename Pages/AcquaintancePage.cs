@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using AndroidIosCucumberExampleNetcore.Helpers;
+using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects;
 using OpenQA.Selenium.Appium.PageObjects.Attributes;
 using SeleniumExtras.PageObjects;
 
-namespace AndroidIosCucumberExampleNetcore.Pages
+namespace IosAndroidSpecflowExample.Pages
 {
     public class AcquaintancePage : BasePage
     {

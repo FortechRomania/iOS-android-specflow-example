@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AndroidIosCucumberExampleNetcore.Settings {
+namespace IosAndroidSpecflowExample.Settings {
     using System;
     
     

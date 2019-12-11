@@ -2,7 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 
-namespace AndroidIosCucumberExampleNetcore.Helpers
+namespace IosAndroidSpecflowExample.Helpers
 {
     // See https://github.com/nunit/nunit/issues/2182#issuecomment-445461787
     public static class TestLogger
