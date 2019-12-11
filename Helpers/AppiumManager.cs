@@ -6,7 +6,6 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Appium.iOS;
-using OpenQA.Selenium.Appium.Windows;
 
 namespace IosAndroidSpecflowExample.Helpers
 {
@@ -17,8 +16,6 @@ namespace IosAndroidSpecflowExample.Helpers
         private static readonly TimeSpan AppiumDriverStartupTimeout = TimeSpan.FromSeconds(180);
 
         public static AppiumDriver<AppiumWebElement> Driver { get; private set; }
-
-        public static WindowsDriver<WindowsElement> WindowsDesktopDriver { get; private set; }
 
         public static PlatformEnum Platform { get; set; }
 
