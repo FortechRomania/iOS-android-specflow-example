@@ -1,119 +1,0 @@
-r
-À√∫Óú∂à’i*g
-$b5cbe22c-3732-4326-8c87-18c75cd32210Ã√∫Ó®Û´2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64º
-Bπ
-
-$b5cbe22c-3732-4326-8c87-18c75cd32210Ã√∫ÓåπÎMÉ
-˛	System.ArgumentException: The SearchContext of the locator object cannot be null (Parameter 'locator')
-   at SeleniumExtras.PageObjects.PageFactory.InitElements(Object page, IElementLocator locator, IPageObjectMemberDecorator decorator)
-   at SeleniumExtras.PageObjects.PageFactory.InitElements(ISearchContext driver, Object page, IPageObjectMemberDecorator decorator)
-   at Just4Fun.ConsoleApp1.Pages.LoginPage..ctor() in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Pages\LoginPage.cs:line 34
-   at Just4Fun.ConsoleApp1.Steps.LoginSteps.LoginNewUser(Credentials credentials) in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Steps\LoginSteps.cs:line 117
-   at Just4Fun.ConsoleApp1.Steps.LoginSteps.LoginWithValidCredentialsFromNewUserScreen() in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Steps\LoginSteps.cs:line 24
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)zÃ√∫Óê‡ˆ\r
-‹…∫Ó‡Ìî”j*h
-$f1c6a55f-d414-4160-b05f-76fb5cce93ff‹…∫ÓÑ‡öÌ2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64Û
-B
-
-$f1c6a55f-d414-4160-b05f-76fb5cce93ff‹…∫Ó®Çî∏π
-¥
-System.ArgumentException: The SearchContext of the locator object cannot be null (Parameter 'locator')
-   at SeleniumExtras.PageObjects.PageFactory.InitElements(Object page, IElementLocator locator, IPageObjectMemberDecorator decorator)
-   at SeleniumExtras.PageObjects.PageFactory.InitElements(ISearchContext driver, Object page, IPageObjectMemberDecorator decorator)
-   at Just4Fun.ConsoleApp1.Pages.LoginPage..ctor() in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Pages\LoginPage.cs:line 34
-   at BritishCarAuctions.DealerProApp.AcceptanceTests.Steps.LoginSteps.LoginNewUser(Credentials credentials) in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Steps\LoginSteps.cs:line 178
-   at BritishCarAuctions.DealerProApp.AcceptanceTests.Steps.LoginSteps.LoginWithValidCredentialsFromNewUserScreen() in C:\Users\raulr\Desktop\Practicing\Just4Fun\ConsoleApp1\Steps\LoginSteps.cs:line 24
-   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan& duration)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
-   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance)z‹…∫Óö—»r
-»˜∫Ó‹Æ„fj*h
-$b1352132-b0e6-4150-bf65-2bd2a39f2f2f»˜∫ÓÿßÓå2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64r
-˛µ…Ó‘Îˆ˚j*h
-$5229a242-e400-4887-8de2-cb4d8d9de2ce˛µ…Óêè÷§2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64∑B¥
-$5229a242-e400-4887-8de2-cb4d8d9de2ce·∂…Ó¸˛Âó˝¯No matching step definition found for one or more steps.
-using System;
-using TechTalk.SpecFlow;
-
-namespace MyNamespace
-{
-    [Binding]
-    public class StepDefinitions
-    {
-        [Then(@"Search Vehicle screen is displayed")]
-        public void ThenSearchVehicleScreenIsDisplayed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-    }
-}
-z·∂…Ó®Á‰∂r
-õø…Ó»–©êj*h
-$eff5d72a-fef1-46f4-baff-1077bcd811d1õø…ÓúÚºß2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64∑B¥
-$eff5d72a-fef1-46f4-baff-1077bcd811d1øø…Ó‡∆≥Ç˝¯No matching step definition found for one or more steps.
-using System;
-using TechTalk.SpecFlow;
-
-namespace MyNamespace
-{
-    [Binding]
-    public class StepDefinitions
-    {
-        [Then(@"Search Vehicle screen is displayed")]
-        public void ThenSearchVehicleScreenIsDisplayed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-    }
-}
-zøø…ÓåÌ–ûr
-◊ø…ÓÃËÔ£j*h
-$cfce9caa-0e49-4278-a563-1b0c50df51ca◊ø…Ó ‚∫2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64∑B¥
-$cfce9caa-0e49-4278-a563-1b0c50df51ca¯ø…Ó¿ÿÁÅ˝¯No matching step definition found for one or more steps.
-using System;
-using TechTalk.SpecFlow;
-
-namespace MyNamespace
-{
-    [Binding]
-    public class StepDefinitions
-    {
-        [Then(@"Search Vehicle screen is displayed")]
-        public void ThenSearchVehicleScreenIsDisplayed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-    }
-}
-z¯ø…Ó∏÷É°r
-à¬…ÓÑÌÃÇj*h
-$55a88184-b289-4976-8921-23762468a1ffà¬…Óÿƒ•Ø2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64∂B≥
-$55a88184-b289-4976-8921-23762468a1ff©¬…Ó¨ö‹K˝¯No matching step definition found for one or more steps.
-using System;
-using TechTalk.SpecFlow;
-
-namespace MyNamespace
-{
-    [Binding]
-    public class StepDefinitions
-    {
-        [Then(@"Search Vehicle screen is displayed")]
-        public void ThenSearchVehicleScreenIsDisplayed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-    }
-}
-z©¬…Ó¨ ˚er
-Í«…ÓÑèŒÉj*h
-$e606ddc1-ba36-4527-893e-53c7c7d2d85eÍ«…Ó–Ω¥¶2
-SpecFlow3.1Microsoft Windows 10.0.17134"X64:B8
-$e606ddc1-ba36-4527-893e-53c7c7d2d85eò»…ÓÙ˚à∏zò»…Ó§ƒÉÃ
