@@ -14,7 +14,7 @@ namespace IosAndroidSpecflowExample.Steps
             ScenarioState = scenarioState;
         }
 
-        public ScenarioState ScenarioState { get; set; }
+        private ScenarioState ScenarioState { get; set; }
 
         [StepDefinition(@"I tap on the add acquaintance button")]
         public void GivenITapOnTheAddAcquaintanceButton()

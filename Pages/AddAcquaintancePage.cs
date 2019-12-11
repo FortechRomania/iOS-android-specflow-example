@@ -1,5 +1,4 @@
-﻿using System;
-using IosAndroidSpecflowExample.Helpers;
+﻿using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects;

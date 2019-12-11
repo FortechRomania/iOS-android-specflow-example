@@ -15,17 +15,14 @@ namespace IosAndroidSpecflowExample.Steps
     [Binding]
     public class Hooks : ReportingStepDefinitions
     {
-        private ScenarioState _scenarioState;
-
-        private ScenarioContext _currentScenarioContext;
-
-        public Hooks(ScenarioState scenarioState, ScenarioContext currentScenarioContext)
+        public Hooks(ScenarioContext currentScenarioContext)
         {
-            _scenarioState = scenarioState;
-            _currentScenarioContext = currentScenarioContext;
+            CurrentScenarioContext = currentScenarioContext;
         }
 
         private static List<ScenarioScreenshotInfo> ScenarioScreenshots { get; set; } = new List<ScenarioScreenshotInfo>();
+
+        private ScenarioContext CurrentScenarioContext { get; set; }
 
         [BeforeTestRun]
         public static void BeforeTestRun()
@@ -72,12 +69,12 @@ namespace IosAndroidSpecflowExample.Steps
         [AfterScenario]
         public void AfterScenario()
         {
-            if (_currentScenarioContext.TestError != null)
+            if (CurrentScenarioContext.TestError != null)
             {
                 try
                 {
                     var screenshot = AppiumManager.Driver.GetScreenshot();
-                    ScenarioScreenshots.Add(new ScenarioScreenshotInfo(_currentScenarioContext.ScenarioInfo.Title, screenshot.AsBase64EncodedString));
+                    ScenarioScreenshots.Add(new ScenarioScreenshotInfo(CurrentScenarioContext.ScenarioInfo.Title, screenshot.AsBase64EncodedString));
 
                     string screenshotPath = Path.Combine(TestContext.CurrentContext.WorkDirectory, $"{TestContext.CurrentContext.Test.Name}.png");
                     File.WriteAllBytes(screenshotPath, screenshot.AsByteArray);

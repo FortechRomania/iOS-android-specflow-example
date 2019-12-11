@@ -14,7 +14,7 @@ namespace IosAndroidSpecflowExample.Steps
             ScenarioState = scenarioState;
         }
 
-        public ScenarioState ScenarioState { get; set; }
+        private ScenarioState ScenarioState { get; set; }
 
         [StepDefinition(@"I tap on the delete acquaintance button and confirm my action")]
         public void LoginWithValidCredentialsFromNewUserScreen()

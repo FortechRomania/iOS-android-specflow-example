@@ -7,6 +7,7 @@ using SeleniumExtras.PageObjects;
 
 namespace IosAndroidSpecflowExample.Pages
 {
+#pragma warning disable 0649
     public class AcquaintanceDetailsPage : BasePage
     {
         [FindsByAndroidUIAutomator(ID = "acquaintanceEditButton")]

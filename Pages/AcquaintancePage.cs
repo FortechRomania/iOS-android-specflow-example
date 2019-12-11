@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
@@ -8,6 +9,7 @@ using SeleniumExtras.PageObjects;
 
 namespace IosAndroidSpecflowExample.Pages
 {
+#pragma warning disable 0649
     public class AcquaintancePage : BasePage
     {
         [FindsByAndroidUIAutomator(ID = "acquaintanceListFloatingActionButton")]
@@ -50,7 +52,7 @@ namespace IosAndroidSpecflowExample.Pages
 
         public void WaitUntilListIsNotEmpty()
         {
-            Helper.WaitFor(() => _iosAcquaintances.Count != 0);
+            Helper.WaitFor(_iosAcquaintances.Any);
         }
 
         public bool IsAcquaintanceWithNameDisplayed(string formattedAcquaintanceName)

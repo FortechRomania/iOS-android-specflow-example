@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Interactions;
 using OpenQA.Selenium.Appium.MultiTouch;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-
-using PointerInputDevice = OpenQA.Selenium.Appium.Interactions.PointerInputDevice;
 
 namespace IosAndroidSpecflowExample.Helpers
 {
@@ -57,25 +52,10 @@ namespace IosAndroidSpecflowExample.Helpers
         {
             var startx = AppiumManager.Driver.Manage().Window.Size.Width / 2;
             var starty = AppiumManager.Driver.Manage().Window.Size.Height / 2;
-            offset = offset ?? (AppiumManager.Driver.Manage().Window.Size.Height / 2) - 10;
+            offset ??= (AppiumManager.Driver.Manage().Window.Size.Height / 2) - 10;
             var endy = starty - offset.Value;
 
-            if (AppiumManager.IsOnIOS)
-            {
-                new TouchAction(AppiumManager.Driver).Press(startx, starty).Wait(ms: 1000).MoveTo(startx, endy).Release().Perform();
-            }
-            else if (AppiumManager.IsOnAndroid)
-            {
-                var touchDevice = new PointerInputDevice(PointerKind.Touch);
-                var actionSequence = new ActionSequence(touchDevice, 0);
-
-                actionSequence.AddAction(touchDevice.CreatePointerMove(CoordinateOrigin.Viewport, startx, starty, TimeSpan.Zero));
-                actionSequence.AddAction(touchDevice.CreatePointerDown(PointerButton.TouchContact));
-                actionSequence.AddAction(touchDevice.CreatePointerMove(CoordinateOrigin.Viewport, startx, endy, TimeSpan.Zero));
-                actionSequence.AddAction(touchDevice.CreatePointerUp(PointerButton.TouchContact));
-
-                AppiumManager.Driver.PerformActions(new List<ActionSequence> { actionSequence });
-            }
+            new TouchAction(AppiumManager.Driver).Press(startx, starty).Wait(ms: 1000).MoveTo(startx, endy).Release().Perform();
         }
 
         public static void ExecuteSwallowingExceptions(Action action)
