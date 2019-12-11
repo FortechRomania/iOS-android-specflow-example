@@ -1,7 +1,5 @@
-﻿using System;
-using IosAndroidSpecflowExample.Helpers;
+﻿using IosAndroidSpecflowExample.Helpers;
 using IosAndroidSpecflowExample.Pages;
-using FluentAssertions;
 using SpecNuts;
 using TechTalk.SpecFlow;
 
