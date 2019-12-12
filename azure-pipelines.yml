@@ -1,0 +1,85 @@
+variables:
+  - group: Mobile Settings
+
+name: $(Rev:r)
+trigger: none
+schedules:
+- cron: "0 23 * * *"
+  displayName: Daily 23:00 Build
+  branches:
+    include:
+    - master
+  always: "true"
+
+jobs:
+
+- job: Phase_1
+  displayName: Mac Agent Phase
+  timeoutInMinutes: 240
+  condition: succeeded()
+  workspace:
+    clean: all
+  pool:
+    name: Hosted macOS
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 3.0.100'
+    inputs:
+      packageType: 'sdk'
+      version: '3.0.100'
+
+  - script: 'sed -i.bak ''s/Xcode_.*.app/Xcode_10.3.app/g'' xamarin_sdk_version.sh'
+    displayName: 'Select Xcode'
+
+  - task: DownloadBuildArtifacts@0
+    displayName: Download iOS Build
+    inputs:
+      buildType: 'specific'
+      project: 'e9948120-12e0-49e2-ab35-fdcd47484902'
+      pipeline: '490'
+      artifactName: 'UAT APP'
+      buildVersionToDownload: 'latest'
+      downloadType: 'single'
+      downloadPath: '$(System.ArtifactsDirectory)'
+
+  - task: ExtractFiles@1
+    displayName: 'Extract .app'
+    inputs:
+      archiveFilePatterns: '$(System.ArtifactsDirectory)/UAT APP/UAT-BritishCarAuctions.DealerProApp.iOS.app.zip'
+      destinationFolder: '$(System.DefaultWorkingDirectory)/UITestsApp'
+
+  - script: |
+      npm install -g npm@6.4.1
+      
+      sudo npm cache clean -f
+      sudo npm install -g n
+      sudo n 11.13.0
+      
+      npm install appium@1.14.0 -g
+    displayName: 'Install Appium 1.14.0'
+
+  - script: sudo chmod -R 777 "$(System.DefaultWorkingDirectory)/UITestsApp/BritishCarAuctions.DealerProApp.iOS.app"
+    displayName: 'Fix permissions for .app'
+
+  - template: templates/install-cake.yml
+
+  - task: CmdLine@2
+    displayName: 'Invoke Cake'
+    inputs:
+      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPad Air 2" --app-path="$(System.DefaultWorkingDirectory)/UITestsApp/BritishCarAuctions.DealerProApp.iOS.app" --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
+    continueOnError: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Json Reports'
+    inputs:
+      PathtoPublish: C:/Users/lavinia.faragau/Documents/ExplorationDayProj/bin/Debug/netcoreapp3.0/TestReports.json
+      ArtifactName: 'Json Reports'
+    condition: succeededOrFailed()
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/*.trx'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: '**/*.trx'
