@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'macOS'
+  vmImage: 'macAgent'
 
 variables:
   buildConfiguration: 'Release'
