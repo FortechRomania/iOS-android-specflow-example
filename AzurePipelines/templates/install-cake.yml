@@ -1,0 +1,6 @@
+steps:  
+- task: CmdLine@2
+  displayName: 'Install Cake'
+  inputs:
+    script: 'dotnet tool update --global Cake.Tool --version 0.35.0'
+  continueOnError: true
