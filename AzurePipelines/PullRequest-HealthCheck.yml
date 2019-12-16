@@ -1,0 +1,47 @@
+name: $(Rev:r)
+trigger: none
+
+jobs:
+
+- job: Phase_1
+  displayName: 'Automation Project'
+  condition: succeeded()
+  workspace:
+    clean: all
+  pool:
+    name: macOS
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 3.0.100'
+    inputs:
+      packageType: 'sdk'
+      version: '3.0.100'
+
+  - template: templates/install-cake.yml 
+
+  - task: CmdLine@2
+    displayName: 'Invoke HealthCheck'
+    condition: succeededOrFailed()
+    inputs:
+      script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken) --configuration=Debug'
+
+  - task: CmdLine@2
+    displayName: 'Report Warnings to VSTS'
+    condition: succeededOrFailed()
+    inputs:
+      script: 'dotnet-cake --target=ReportBuildWarningsToVsts'
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/*.trx'
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: '**/*.trx'
+    condition: succeededOrFailed()
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage from unit tests'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/BritishCarAuctions.DealerProApp.UnitTests/coverage.cobertura.xml'
+    condition: succeededOrFailed()
