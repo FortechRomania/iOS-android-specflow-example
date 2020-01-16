@@ -1,0 +1,42 @@
+variables:
+  - group: Mobile Settings
+
+name: $(Rev:r)
+trigger:
+  branches:
+    include:
+    - master
+
+jobs:
+
+- job: Phase_1
+  displayName: 'Hosted macOS Job'
+  condition: succeeded()
+  workspace:
+    clean: all
+  pool:
+    name: Hosted macOS
+
+  steps:
+    
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 3.0.100'
+    inputs:
+      packageType: 'sdk'
+      version: '3.0.100'
+
+  - template: templates/install-cake.yml 
+
+  - task: CmdLine@2
+    displayName: 'Invoke HealthCheck'
+    condition: succeededOrFailed()
+    inputs:
+      script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
+
+  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@4
+    displayName: 'Report Warnings'
+    condition: succeededOrFailed() 
+    inputs:
+      checkWarnings: true
+      warningTaskFilters: '/Invoke HealthCheck'
+      includePartiallySucceeded: false
