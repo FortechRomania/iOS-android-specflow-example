@@ -12,7 +12,6 @@ using System.Diagnostics;
 var TARGET = Argument("target", "Build");
 var CONFIGURATION = Argument("configuration", "Release");
 var HOME = EnvironmentVariable("HOME");
-var BUILD_NUMBER= Argument("build-number", "");
 
 var VSTS_USERNAME = Argument("vsts_username", EnvironmentVariable("VSTS_USERNAME"));
 var VSTS_ACCESS_TOKEN = Argument("vsts_token", EnvironmentVariable("VSTS_ACCESS_TOKEN"));
@@ -22,10 +21,6 @@ var NUGET_SOURCE_NAME = "mobile-team";
 var NUGET_FEED_URL = "https://bcagroup.pkgs.visualstudio.com/_packaging/mobile-team/nuget/v3/index.json";
 
 var MS_BUILD_LOG_FILE = $"{Environment.CurrentDirectory}/msbuild.log";
-
-// IOS IPA ARGUMENTS
-var CODE_SIGN_PROVISION = Argument("code-sign-provision", "Automatic:Development");
-var CODE_SIGN_KEY = Argument("code-sign-key", "");
 
 // IOS UI TESTS ARGUMENTS
 var APP_PATH = Argument("app-path", "");
@@ -40,7 +35,7 @@ public static class Project
 
 public static class ApplicationsInfo
 {
-    public static string iOSAppName = "AcquaintanceNativeiOS-shortlist";
+    public static string iOSAppName = "AcquaintanceNativeiOS-shortlist.app";
 }
 
 Task("AddNugetSource")
@@ -114,7 +109,7 @@ Task("ReportBuildWarningsToVsts")
 Task("HealthCheck")
 .IsDependentOn("SetXamarinSdkVersionIfRunningOnVsts")
 .IsDependentOn("Build")
-.IsDependentOn("UnitTests");
+.IsDependentOn("ReportBuildWarningsToVsts");
 
 Task("SetXamarinSdkVersionIfRunningOnVsts")
 .Does(() => {

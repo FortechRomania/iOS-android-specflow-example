@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IosAndroidSpecflowExample.Settings {
+namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace IosAndroidSpecflowExample.Settings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GlobalSettings {
+    public class IosSettings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GlobalSettings() {
+        internal IosSettings() {
         }
         
         /// <summary>
@@ -39,7 +39,8 @@ namespace IosAndroidSpecflowExample.Settings {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AndroidIosCucumberExampleNetcore.Settings.GlobalSettings", typeof(GlobalSettings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings.IosS" +
+                            "ettings", typeof(IosSettings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +62,65 @@ namespace IosAndroidSpecflowExample.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Android.
+        ///   Looks up a localized string similar to /Users/raulrus/Desktop/AcquaintNativeiOS-shortlist.app.
         /// </summary>
-        public static string Platform {
+        public static string AppPath {
             get {
-                return ResourceManager.GetString("Platform", resourceCulture);
+                return ResourceManager.GetString("AppPath", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://192.168.211.54:4723/wd/hub/.
+        ///   Looks up a localized string similar to iPhone 8.
         /// </summary>
-        public static string ServerUri {
+        public static string DeviceIdentifier {
             get {
-                return ResourceManager.GetString("ServerUri", resourceCulture);
+                return ResourceManager.GetString("DeviceIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.2.
+        /// </summary>
+        public static string DevicePlatform {
+            get {
+                return ResourceManager.GetString("DevicePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string UDID {
+            get {
+                return ResourceManager.GetString("UDID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string UpdatedWDABundleId {
+            get {
+                return ResourceManager.GetString("UpdatedWDABundleId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string XcodeOrgId {
+            get {
+                return ResourceManager.GetString("XcodeOrgId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string XcodeSigningId {
+            get {
+                return ResourceManager.GetString("XcodeSigningId", resourceCulture);
             }
         }
     }
