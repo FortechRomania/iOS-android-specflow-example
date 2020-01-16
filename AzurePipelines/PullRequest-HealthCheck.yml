@@ -1,15 +1,18 @@
+variables:
+- group: Mobile Settings
+
 name: $(Rev:r)
 trigger: none
 
 jobs:
 
 - job: Phase_1
-  displayName: 'Automation Project'
+  displayName: 'Hosted macOS Job'
   condition: succeeded()
   workspace:
     clean: all
   pool:
-    name: macOS
+    name: Hosted macOS
 
   steps:
   - task: UseDotNet@2
@@ -24,13 +27,7 @@ jobs:
     displayName: 'Invoke HealthCheck'
     condition: succeededOrFailed()
     inputs:
-      script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken) --configuration=Debug'
-
-  - task: CmdLine@2
-    displayName: 'Report Warnings to VSTS'
-    condition: succeededOrFailed()
-    inputs:
-      script: 'dotnet-cake --target=ReportBuildWarningsToVsts'
+      script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/*.trx'
@@ -39,9 +36,12 @@ jobs:
       testResultsFiles: '**/*.trx'
     condition: succeededOrFailed()
 
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish code coverage from unit tests'
+  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@4
+    displayName: 'Report Warnings'
     inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/BritishCarAuctions.DealerProApp.UnitTests/coverage.cobertura.xml'
+      checkWarnings: true
+      warningTaskFilters: '/Invoke HealthCheck'
+      baseDefinitionId: 831
+      baseRepoId: '2ccda06a-852b-45c6-80c8-8263839c1360'
+      baseBranchRef: refs/heads/master
     condition: succeededOrFailed()
