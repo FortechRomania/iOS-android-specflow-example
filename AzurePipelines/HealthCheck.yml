@@ -33,7 +33,7 @@ jobs:
     inputs:
       script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
 
-  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@4
+  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@6
     displayName: 'Report Warnings'
     condition: succeededOrFailed() 
     inputs:
