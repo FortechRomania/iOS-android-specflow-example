@@ -5,10 +5,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="IosAndroidSpecflowExample.AcceptanceTests\stylecop.json" />
     <None Remove="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="stylecop.json" />
+    <AdditionalFiles Include="IosAndroidSpecflowExample.AcceptanceTests\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SpecNuts">
@@ -49,6 +50,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\AndroidSettings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AndroidSettings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\GlobalSettings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GlobalSettings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\IosSettings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IosSettings.resx</DependentUpon>
+    </Compile>
     <Compile Update="Settings\AndroidSettings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -71,6 +87,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\AndroidSettings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AndroidSettings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\GlobalSettings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalSettings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="IosAndroidSpecflowExample.AcceptanceTests\Settings\IosSettings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IosSettings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Settings\AndroidSettings.Designer.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AndroidSettings.Designer.Designer.cs</LastGenOutput>
