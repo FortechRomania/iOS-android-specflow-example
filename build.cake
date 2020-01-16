@@ -12,20 +12,15 @@ using System.Diagnostics;
 var TARGET = Argument("target", "Build");
 var CONFIGURATION = Argument("configuration", "Release");
 var HOME = EnvironmentVariable("HOME");
-var BUILD_NUMBER= Argument("build-number", "");
 
 var VSTS_USERNAME = Argument("vsts_username", EnvironmentVariable("VSTS_USERNAME"));
 var VSTS_ACCESS_TOKEN = Argument("vsts_token", EnvironmentVariable("VSTS_ACCESS_TOKEN"));
 
 // CONSTANTS
-var NUGET_SOURCE_NAME = "mobile-team";
-var NUGET_FEED_URL = "https://bcagroup.pkgs.visualstudio.com/_packaging/mobile-team/nuget/v3/index.json";
+var NUGET_SOURCE_NAME = "practicePurposeOrg";
+var NUGET_FEED_URL = "https://pkgs.dev.azure.com/practicePurposeOrg/_packaging/practicePurposeOrg/nuget/v3/index.json";
 
 var MS_BUILD_LOG_FILE = $"{Environment.CurrentDirectory}/msbuild.log";
-
-// IOS IPA ARGUMENTS
-var CODE_SIGN_PROVISION = Argument("code-sign-provision", "Automatic:Development");
-var CODE_SIGN_KEY = Argument("code-sign-key", "");
 
 // IOS UI TESTS ARGUMENTS
 var APP_PATH = Argument("app-path", "");
@@ -36,11 +31,13 @@ var IOS_PLATFORM_VERSION = Argument("ios-version", "12.2");
 public static class Project
 {
     public static string Solution = "IosAndroidSpecflowExample.sln";
+    public static string AcceptanceTestsPath = "./IosAndroidSpecflowExample.AcceptanceTests";
+    public static string AcceptanceTests = $"{AcceptanceTestsPath}/IosAndroidSpecflowExample.csproj";
 }
 
 public static class ApplicationsInfo
 {
-    public static string iOSAppName = "AcquaintanceNativeiOS-shortlist";
+    public static string iOSAppName = "AcquaintanceNativeiOS-shortlist.app";
 }
 
 Task("AddNugetSource")
@@ -62,14 +59,14 @@ Task("Clean")
     var buildSettings = new MSBuildSettings()
      .WithTarget("Clean");
          
-    MSBuild(Projects.Solution, buildSettings);
+    MSBuild(Project.Solution, buildSettings);
 });
 
 Task("NuGetRestore")
 .IsDependentOn("Clean")
 .IsDependentOn("AddNugetSource")
 .Does(() => {
-    NuGetRestore(Projects.Solution);
+    NuGetRestore(Project.Solution);
 });
 
 Task("Build")
@@ -81,7 +78,7 @@ Task("Build")
             Context.Tools.Resolve("MSBuild.ExtensionPack.Loggers.dll").FullPath,
             "XmlFileLogger",
             string.Format($"logfile=\"{MS_BUILD_LOG_FILE}\";verbosity=Detailed;encoding=UTF-8"));
-    MSBuild(Projects.Solution, buildSettings);
+    MSBuild(Project.Solution, buildSettings);
 });
 
 Task("iOSSimulatorAcceptanceTests")
@@ -90,14 +87,14 @@ Task("iOSSimulatorAcceptanceTests")
 .Does(() => {
     DisableiOSKeyboardSettings(SIMULATOR_NAME, IOS_PLATFORM_VERSION);
 
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DevicePlatform']/value", IOS_PLATFORM_VERSION);
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DeviceIdentifier']/value", SIMULATOR_NAME);
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='AppPath']/value", APP_PATH);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DevicePlatform']/value", IOS_PLATFORM_VERSION);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DeviceIdentifier']/value", SIMULATOR_NAME);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='AppPath']/value", APP_PATH);
 
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='Platform']/value", "iOS");
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='ScreenType']/value", "IpadRegularScreen");
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='Platform']/value", "iOS");
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='ScreenType']/value", "IpadRegularScreen");
 
-    MSBuild(Projects.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
+    MSBuild(Project.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
 });
 
 Task("ReportBuildWarningsToVsts")
@@ -114,7 +111,7 @@ Task("ReportBuildWarningsToVsts")
 Task("HealthCheck")
 .IsDependentOn("SetXamarinSdkVersionIfRunningOnVsts")
 .IsDependentOn("Build")
-.IsDependentOn("UnitTests");
+.IsDependentOn("ReportBuildWarningsToVsts");
 
 Task("SetXamarinSdkVersionIfRunningOnVsts")
 .Does(() => {

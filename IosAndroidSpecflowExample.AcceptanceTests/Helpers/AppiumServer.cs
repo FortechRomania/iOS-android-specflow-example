@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using IosAndroidSpecflowExample.Settings;
+using IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings;
 using OpenQA.Selenium.Appium.Service;
 
 namespace IosAndroidSpecflowExample.Helpers

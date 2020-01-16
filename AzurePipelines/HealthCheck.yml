@@ -1,8 +1,11 @@
 variables:
-- group: Mobile Settings
+  - group: Mobile Settings
 
 name: $(Rev:r)
-trigger: none
+trigger:
+  branches:
+    include:
+    - master
 
 jobs:
 
@@ -15,6 +18,7 @@ jobs:
     name: Hosted macOS
 
   steps:
+    
   - task: UseDotNet@2
     displayName: 'Install .NET Core 3.0.100'
     inputs:
@@ -29,19 +33,10 @@ jobs:
     inputs:
       script: 'dotnet-cake --target=HealthCheck --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Test Results **/*.trx'
-    inputs:
-      testResultsFormat: VSTest
-      testResultsFiles: '**/*.trx'
-    condition: succeededOrFailed()
-
   - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@6
     displayName: 'Report Warnings'
+    condition: succeededOrFailed() 
     inputs:
       checkWarnings: true
       warningTaskFilters: '/Invoke HealthCheck'
-      baseDefinitionId: 831
-      baseRepoId: '2ccda06a-852b-45c6-80c8-8263839c1360'
-      baseBranchRef: refs/heads/master
-    condition: succeededOrFailed()
+      includePartiallySucceeded: false

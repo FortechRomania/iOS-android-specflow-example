@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using IosAndroidSpecflowExample.Settings;
+using IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;

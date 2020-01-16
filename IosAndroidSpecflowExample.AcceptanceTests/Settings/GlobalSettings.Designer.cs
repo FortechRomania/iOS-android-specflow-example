@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IosAndroidSpecflowExample.Settings {
+namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace IosAndroidSpecflowExample.Settings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AndroidSettings {
+    public class GlobalSettings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AndroidSettings() {
+        internal GlobalSettings() {
         }
         
         /// <summary>
@@ -39,7 +39,8 @@ namespace IosAndroidSpecflowExample.Settings {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AndroidIosCucumberExampleNetcore.Settings.AndroidSettings", typeof(AndroidSettings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings.Glob" +
+                            "alSettings", typeof(GlobalSettings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +62,20 @@ namespace IosAndroidSpecflowExample.Settings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Users/raulrus/Desktop/com.xamarin.acquaintnative.apk.
+        ///   Looks up a localized string similar to Android.
         /// </summary>
-        public static string ApkPath {
+        public static string Platform {
             get {
-                return ResourceManager.GetString("ApkPath", resourceCulture);
+                return ResourceManager.GetString("Platform", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pixel_XL_API_28.
+        ///   Looks up a localized string similar to http://192.168.211.54:4723/wd/hub/.
         /// </summary>
-        public static string DeviceIdentifier {
+        public static string ServerUri {
             get {
-                return ResourceManager.GetString("DeviceIdentifier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 9.
-        /// </summary>
-        public static string DevicePlatform {
-            get {
-                return ResourceManager.GetString("DevicePlatform", resourceCulture);
+                return ResourceManager.GetString("ServerUri", resourceCulture);
             }
         }
     }
