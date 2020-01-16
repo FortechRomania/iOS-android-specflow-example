@@ -17,8 +17,8 @@ var VSTS_USERNAME = Argument("vsts_username", EnvironmentVariable("VSTS_USERNAME
 var VSTS_ACCESS_TOKEN = Argument("vsts_token", EnvironmentVariable("VSTS_ACCESS_TOKEN"));
 
 // CONSTANTS
-var NUGET_SOURCE_NAME = "mobile-team";
-var NUGET_FEED_URL = "https://bcagroup.pkgs.visualstudio.com/_packaging/mobile-team/nuget/v3/index.json";
+var NUGET_SOURCE_NAME = "practicePurposeOrg";
+var NUGET_FEED_URL = "https://pkgs.dev.azure.com/practicePurposeOrg/_packaging/practicePurposeOrg/nuget/v3/index.json";
 
 var MS_BUILD_LOG_FILE = $"{Environment.CurrentDirectory}/msbuild.log";
 
@@ -31,6 +31,8 @@ var IOS_PLATFORM_VERSION = Argument("ios-version", "12.2");
 public static class Project
 {
     public static string Solution = "IosAndroidSpecflowExample.sln";
+    public static string AcceptanceTestsPath = "./IosAndroidSpecflowExample.AcceptanceTests";
+    public static string AcceptanceTests = $"{AcceptanceTestsPath}/IosAndroidSpecflowExample.csproj";
 }
 
 public static class ApplicationsInfo
