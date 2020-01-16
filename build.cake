@@ -59,14 +59,14 @@ Task("Clean")
     var buildSettings = new MSBuildSettings()
      .WithTarget("Clean");
          
-    MSBuild(Projects.Solution, buildSettings);
+    MSBuild(Project.Solution, buildSettings);
 });
 
 Task("NuGetRestore")
 .IsDependentOn("Clean")
 .IsDependentOn("AddNugetSource")
 .Does(() => {
-    NuGetRestore(Projects.Solution);
+    NuGetRestore(Project.Solution);
 });
 
 Task("Build")
@@ -78,7 +78,7 @@ Task("Build")
             Context.Tools.Resolve("MSBuild.ExtensionPack.Loggers.dll").FullPath,
             "XmlFileLogger",
             string.Format($"logfile=\"{MS_BUILD_LOG_FILE}\";verbosity=Detailed;encoding=UTF-8"));
-    MSBuild(Projects.Solution, buildSettings);
+    MSBuild(Project.Solution, buildSettings);
 });
 
 Task("iOSSimulatorAcceptanceTests")
@@ -87,14 +87,14 @@ Task("iOSSimulatorAcceptanceTests")
 .Does(() => {
     DisableiOSKeyboardSettings(SIMULATOR_NAME, IOS_PLATFORM_VERSION);
 
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DevicePlatform']/value", IOS_PLATFORM_VERSION);
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DeviceIdentifier']/value", SIMULATOR_NAME);
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='AppPath']/value", APP_PATH);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DevicePlatform']/value", IOS_PLATFORM_VERSION);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='DeviceIdentifier']/value", SIMULATOR_NAME);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/IosSettings.resx", "/root/data[@name='AppPath']/value", APP_PATH);
 
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='Platform']/value", "iOS");
-    XmlPoke($"{Projects.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='ScreenType']/value", "IpadRegularScreen");
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='Platform']/value", "iOS");
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='ScreenType']/value", "IpadRegularScreen");
 
-    MSBuild(Projects.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
+    MSBuild(Project.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
 });
 
 Task("ReportBuildWarningsToVsts")
