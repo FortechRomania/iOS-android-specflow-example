@@ -121,7 +121,7 @@
     <value>Android</value>
   </data>
   <data name="ServerUri" xml:space="preserve">
-    <value>http://192.168.211.54:4723/wd/hub/</value>
+    <value />
     <comment>http://192.168.211.31:4723/wd/hub/</comment>
   </data>
 </root>

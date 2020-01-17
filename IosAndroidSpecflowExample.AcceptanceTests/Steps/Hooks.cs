@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using IosAndroidSpecflowExample.Helpers;
-using IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings;
 using IosAndroidSpecflowExample.Reporting;
 using NUnit.Framework;
 using SpecNuts;
@@ -45,7 +44,7 @@ namespace IosAndroidSpecflowExample.Steps
                 args.Reporter.WriteToFile($"{reportsPath}/TestReports.json");
             };
 
-            AppiumManager.Platform = GlobalSettings.Platform == "iOS" ? PlatformEnum.IOS : PlatformEnum.Android;
+            AppiumManager.Platform = Settings.GlobalSettings.Platform == "iOS" ? PlatformEnum.IOS : PlatformEnum.Android;
             AppiumServer.OutputDataReceived += OnOutputDataReceived;
             AppiumServer.StartServerIfShouldRunLocally();
         }

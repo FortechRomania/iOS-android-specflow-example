@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings;
 using OpenQA.Selenium.Appium.Service;
 
 namespace IosAndroidSpecflowExample.Helpers
@@ -17,7 +16,7 @@ namespace IosAndroidSpecflowExample.Helpers
 
         public static void StartServerIfShouldRunLocally()
         {
-            if (string.IsNullOrEmpty(GlobalSettings.ServerUri))
+            if (string.IsNullOrEmpty(Settings.GlobalSettings.ServerUri))
             {
                 _localService = new AppiumServiceBuilder()
                     .UsingAnyFreePort()
@@ -32,7 +31,7 @@ namespace IosAndroidSpecflowExample.Helpers
             }
             else
             {
-                ServerUri = new Uri(GlobalSettings.ServerUri);
+                ServerUri = new Uri(Settings.GlobalSettings.ServerUri);
             }
         }
 

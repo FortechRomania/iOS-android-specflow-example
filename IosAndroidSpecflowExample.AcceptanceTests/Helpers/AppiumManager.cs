@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
@@ -46,22 +45,22 @@ namespace IosAndroidSpecflowExample.Helpers
         {
             var options = new AppiumOptions();
 
-            options.AddAdditionalCapability(MobileCapabilityType.PlatformName, GlobalSettings.Platform);
+            options.AddAdditionalCapability(MobileCapabilityType.PlatformName, Settings.GlobalSettings.Platform);
 
             options.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, NewCommandTimeoutSeconds);
 
             if (Platform == PlatformEnum.IOS)
             {
-                options.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, IosSettings.DevicePlatform);
-                options.AddAdditionalCapability(MobileCapabilityType.DeviceName, IosSettings.DeviceIdentifier);
-                options.AddAdditionalCapability(MobileCapabilityType.App, IosSettings.AppPath);
+                options.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, Settings.IosSettings.DevicePlatform);
+                options.AddAdditionalCapability(MobileCapabilityType.DeviceName, Settings.IosSettings.DeviceIdentifier);
+                options.AddAdditionalCapability(MobileCapabilityType.App, Settings.IosSettings.AppPath);
 
-                if (!string.IsNullOrEmpty(IosSettings.UDID))
+                if (!string.IsNullOrEmpty(Settings.IosSettings.UDID))
                 {
-                    options.AddAdditionalCapability(MobileCapabilityType.Udid, IosSettings.UDID);
-                    options.AddAdditionalCapability("xcodeOrgId", IosSettings.XcodeOrgId);
-                    options.AddAdditionalCapability("xcodeSigningId", IosSettings.XcodeSigningId);
-                    options.AddAdditionalCapability("updatedWDABundleId", IosSettings.UpdatedWDABundleId);
+                    options.AddAdditionalCapability(MobileCapabilityType.Udid, Settings.IosSettings.UDID);
+                    options.AddAdditionalCapability("xcodeOrgId", Settings.IosSettings.XcodeOrgId);
+                    options.AddAdditionalCapability("xcodeSigningId", Settings.IosSettings.XcodeSigningId);
+                    options.AddAdditionalCapability("updatedWDABundleId", Settings.IosSettings.UpdatedWDABundleId);
                     options.AddAdditionalCapability("wdaLocalPort", GetAvailablePort());
                 }
 
@@ -69,9 +68,9 @@ namespace IosAndroidSpecflowExample.Helpers
             }
             else if (Platform == PlatformEnum.Android)
             {
-                options.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, AndroidSettings.DevicePlatform);
-                options.AddAdditionalCapability(MobileCapabilityType.DeviceName, AndroidSettings.DeviceIdentifier);
-                options.AddAdditionalCapability(MobileCapabilityType.App, AndroidSettings.ApkPath);
+                options.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, Settings.AndroidSettings.DevicePlatform);
+                options.AddAdditionalCapability(MobileCapabilityType.DeviceName, Settings.AndroidSettings.DeviceIdentifier);
+                options.AddAdditionalCapability(MobileCapabilityType.App, Settings.AndroidSettings.ApkPath);
                 options.AddAdditionalCapability(MobileCapabilityType.AutomationName, "uiautomator2");
                 options.AddAdditionalCapability(AndroidMobileCapabilityType.AppWaitActivity, "*");
 

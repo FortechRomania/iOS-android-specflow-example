@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings {
+namespace IosAndroidSpecflowExample.Settings {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings.Andr" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.Settings.Andr" +
                             "oidSettings", typeof(AndroidSettings).Assembly);
                     resourceMan = temp;
                 }

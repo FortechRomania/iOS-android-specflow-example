@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings {
+namespace IosAndroidSpecflowExample.Settings {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings.IosS" +
-                            "ettings", typeof(IosSettings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.Settings.IosSettings", typeof(IosSettings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +61,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Users/raulrus/Desktop/AcquaintNativeiOS-shortlist.app.
+        ///   Looks up a localized string similar to /Users/lavinia.faragau/Desktop/AcquaintNativeiOS-shortlist.app.
         /// </summary>
         public static string AppPath {
             get {
@@ -80,7 +79,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12.2.
+        ///   Looks up a localized string similar to 12.0.
         /// </summary>
         public static string DevicePlatform {
             get {

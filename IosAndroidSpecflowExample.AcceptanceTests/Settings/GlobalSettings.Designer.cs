@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings {
+namespace IosAndroidSpecflowExample.Settings {
     using System;
     
     
@@ -39,8 +39,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Settings.Glob" +
-                            "alSettings", typeof(GlobalSettings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IosAndroidSpecflowExample.Settings.GlobalSettings", typeof(GlobalSettings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -71,7 +70,7 @@ namespace IosAndroidSpecflowExample.IosAndroidSpecflowExample.AcceptanceTests.Se
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://192.168.211.54:4723/wd/hub/.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string ServerUri {
             get {

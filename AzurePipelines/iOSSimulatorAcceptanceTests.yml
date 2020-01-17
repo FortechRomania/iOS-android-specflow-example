@@ -1,6 +1,3 @@
-variables:
-  - group: Mobile Settings
-
 name: $(Rev:r)
 trigger: none
 schedules:
@@ -29,25 +26,10 @@ jobs:
       packageType: 'sdk'
       version: '3.0.100'
 
-  - script: 'sed -i.bak ''s/Xcode_.*.app/Xcode_10.3.app/g'' xamarin_sdk_version.sh'
-    displayName: 'Select Xcode'
-
-  - task: DownloadBuildArtifacts@0
-    displayName: Download iOS Build
-    inputs:
-      buildType: 'specific'
-      project: 'e9948120-12e0-49e2-ab35-fdcd47484902'
-      pipeline: '490'
-      artifactName: 'UAT APP'
-      buildVersionToDownload: 'latest'
-      downloadType: 'single'
-      downloadPath: '$(System.ArtifactsDirectory)'
-
-  - task: ExtractFiles@1
-    displayName: 'Extract .app'
-    inputs:
-      archiveFilePatterns: '$(System.ArtifactsDirectory)/UAT APP/UAT-BritishCarAuctions.DealerProApp.iOS.app.zip'
-      destinationFolder: '$(System.DefaultWorkingDirectory)/UITestsApp'
+  - script: |
+       sudo chmod +x xamarin_sdk_version.sh
+       ./xamarin_sdk_version.sh
+    displayName: 'Pin Xcode / Xamarin / Mono versions'
 
   - script: |
       npm install -g npm@6.4.1
@@ -59,22 +41,39 @@ jobs:
       npm install appium@1.14.0 -g
     displayName: 'Install Appium 1.14.0'
 
-  - script: sudo chmod -R 777 "$(System.DefaultWorkingDirectory)/UITestsApp/BritishCarAuctions.DealerProApp.iOS.app"
-    displayName: 'Fix permissions for .app'
-
   - template: templates/install-cake.yml
 
   - task: CmdLine@2
     displayName: 'Invoke Cake'
     inputs:
-      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPad Air 2" --app-path="$(System.DefaultWorkingDirectory)/UITestsApp/BritishCarAuctions.DealerProApp.iOS.app" --vsts_username=$(VstsUsername) --vsts_token=$(VstsAccessToken)'
+      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPad Air 2" --app-path="$(System.DefaultWorkingDirectory)/apps/AcquaintNativeiOS-shortlist.app/"'
     continueOnError: true
+
+  - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
+    displayName: 'Invoke Specflow HTML Report Generator'
+    inputs:
+      code: |
+        cd $(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/HtmlReporting
+        
+        npm install --loglevel=error
+
+        node index.js --jsonFile=$(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/bin/Release/netcoreapp3.0/TestReports.json --outputHtml=SpecflowReports.html --name="iOS Acceptance Tests"
+        
+        cd $(System.DefaultWorkingDirectory)
+      condition: succeededOrFailed()
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: Json Reports'
     inputs:
-      PathtoPublish: C:/Users/lavinia.faragau/Documents/ExplorationDayProj/bin/Debug/netcoreapp3.0/TestReports.json
+      PathtoPublish: $(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/bin/Release/netcoreapp3.0/TestReports.json
       ArtifactName: 'Json Reports'
+    condition: succeededOrFailed()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Html Report'
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/HtmlReporting/SpecflowReports.html'
+      ArtifactName: 'HTML Reports'
     condition: succeededOrFailed()
 
   - task: PublishTestResults@2

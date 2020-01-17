@@ -1,0 +1,10 @@
+{
+  "name": "specflow-reports",
+  "version": "1.0.0",
+  "description": "Generate Specflow Reports based on the JSON report file",
+  "main": "index.js",
+  "dependencies": {
+    "cucumber-html-reporter": "^5.0.0",
+    "yargs": "^11.0.0"
+  }
+}
