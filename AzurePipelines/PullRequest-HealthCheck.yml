@@ -41,7 +41,7 @@ jobs:
     inputs:
       checkWarnings: true
       warningTaskFilters: '/Invoke HealthCheck'
-      baseDefinitionId: 831
-      baseRepoId: '2ccda06a-852b-45c6-80c8-8263839c1360'
+      baseDefinitionId: 11
+      baseRepoId: 'db8ec2f5-e6a9-4855-a6a2-1969621908e4'
       baseBranchRef: refs/heads/master
     condition: succeededOrFailed()
