@@ -1,5 +1,6 @@
 name: $(Rev:r)
 trigger: none
+pr: none
 schedules:
 - cron: "0 23 * * *"
   displayName: Daily 23:00 Build
