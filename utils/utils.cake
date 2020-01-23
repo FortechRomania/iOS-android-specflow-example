@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Xml;
+using System.Net;
+using System.Net.Sockets;
 
 public void StartProcessWithException(string executablePath, string arguments, string standardInput)
 {
@@ -87,6 +89,16 @@ public void CreateDirectoryIfNeeded(string destination)
 public string ParseProjectName(string relativeProjectPath)
 {
     return relativeProjectPath.Split('/').Last().Replace(".csproj", "");
+}
+
+public int GetAvailablePort()
+{
+    var listener = new TcpListener(IPAddress.Loopback, 0);
+    listener.Start();
+    int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+    listener.Stop();
+  
+    return port;
 }
 
 public void SetBuildNumberIfNeeded(MSBuildSettings buildSettings, string buildNumber)

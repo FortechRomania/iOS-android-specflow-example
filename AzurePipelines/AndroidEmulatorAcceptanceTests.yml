@@ -1,0 +1,90 @@
+name: $(Rev:r)
+trigger: none
+pr: none
+schedules:
+- cron: "0 03 * * *"
+  displayName: Daily 03:00 Build
+  branches:
+    include:
+    - master
+  always: "true"
+
+jobs:
+
+- job: Phase_1
+  displayName: Mac Agent Phase
+  timeoutInMinutes: 240
+  condition: succeeded()
+  workspace:
+    clean: all
+  pool:
+    name: Hosted macOS
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 3.0.100'
+    inputs:
+      packageType: 'sdk'
+      version: '3.0.100'
+
+  - script: |
+       sudo chmod +x xamarin_sdk_version.sh
+       ./xamarin_sdk_version.sh
+    displayName: 'Pin Xcode / Xamarin / Mono versions'
+
+  - script: |
+      npm install -g npm@6.4.1
+      
+      sudo npm cache clean -f
+      sudo npm install -g n
+      sudo n 11.13.0
+      
+      npm install appium@1.14.0 -g
+    displayName: 'Install Appium 1.14.0'
+
+  - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
+    displayName: 'Install Android Studio for skins'
+    inputs:
+      code: 'HOMEBREW_NO_AUTO_UPDATE=1 brew cask install android-studio'
+
+  - template: templates/install-cake.yml
+
+  - task: CmdLine@2
+    displayName: 'Invoke Cake'
+    inputs:
+      script: 'dotnet-cake --target=AndroidEmulatorAcceptanceTests --emulator-api-level=25 --apk-path="$(System.DefaultWorkingDirectory)/apps/com.xamarin.acquaintnative.apk"'
+    continueOnError: true
+
+  - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
+    displayName: 'Invoke Specflow HTML Report Generator'
+    inputs:
+      code: |
+        cd $(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/HtmlReporting
+        
+        npm install --loglevel=error
+
+        node index.js --jsonFile=$(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/bin/Release/netcoreapp3.0/TestReports.json --outputHtml=SpecflowReports.html --name="Android Acceptance Tests"
+        
+        cd $(System.DefaultWorkingDirectory)
+      condition: succeededOrFailed()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Json Reports'
+    inputs:
+      PathtoPublish: $(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/bin/Release/netcoreapp3.0/TestReports.json
+      ArtifactName: 'Json Reports'
+    condition: succeededOrFailed()
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Html Report'
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/IosAndroidSpecflowExample.AcceptanceTests/HtmlReporting/SpecflowReports.html'
+      ArtifactName: 'HTML Reports'
+    condition: succeededOrFailed()
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/*.trx'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: '**/*.trx'

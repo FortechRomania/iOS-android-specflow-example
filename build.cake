@@ -1,9 +1,10 @@
-// Loads our list of addins from the tools folder
+// Loads our list of addins from the utils folder
 // this assumes using the new bootstrapper build.sh in the root folder
 // which downloads the required files
 #load "./utils/cake_utils.cake"
 #load "./utils/utils.cake"
 #load "./utils/ios_utils.cake"
+#load "./utils/android_utils.cake"
 
 using System.Threading;
 using System.Diagnostics;
@@ -16,10 +17,24 @@ var HOME = EnvironmentVariable("HOME");
 // CONSTANTS
 var MS_BUILD_LOG_FILE = $"{Environment.CurrentDirectory}/msbuild.log";
 
+// ANDROID APK ARGUMENTS
+var ANDROID_HOME = EnvironmentVariable("ANDROID_HOME");
+
 // IOS UI TESTS ARGUMENTS
 var APP_PATH = Argument("app-path", "");
 var SIMULATOR_NAME = Argument("sim-name", "iPad Air 2");
 var IOS_PLATFORM_VERSION = Argument("ios-version", "12.2");
+
+// ANDROID UI TESTS ARGUMENTS   
+var AVD_HOME = $"{HOME}/.android/avd";
+var APK_PATH = Argument("apk-path", "");
+var AVD_NAME = Argument("avd-name", "AppEmulator");
+var API_LEVEL = Argument("emulator-api-level", "23");
+var SDK_MANAGER = $"{ANDROID_HOME}/tools/bin/sdkmanager";
+var AVD_MANAGER = $"{ANDROID_HOME}/tools/bin/avdmanager";
+var EMULATOR = $"{ANDROID_HOME}/tools/emulator";
+
+IProcess EMULATOR_PROCESS = null;
 
 // PROJECT
 public static class Project
@@ -73,6 +88,30 @@ Task("iOSSimulatorAcceptanceTests")
 
     MSBuild(Project.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
     DotNetCoreTest(Project.AcceptanceTests, new DotNetCoreTestSettings { NoBuild = true, Logger = "trx", Configuration = CONFIGURATION });
+});
+
+string DEVICE_SERIAL;
+Task("AndroidEmulatorAcceptanceTests")
+.IsDependentOn("Clean")
+.IsDependentOn("NugetRestore")
+.Does(() => {
+    var fullAvdName = $"{AVD_NAME}_{API_LEVEL}";
+    CreateAndroidAvdIfNeeded(API_LEVEL, fullAvdName);
+    (EMULATOR_PROCESS, DEVICE_SERIAL) = LaunchAndroidEmulator(fullAvdName);
+
+    Adb($"-s {DEVICE_SERIAL} shell settings put secure show_ime_with_hard_keyboard 0");
+
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/AndroidSettings.resx", "/root/data[@name='DevicePlatform']/value", versionNames[API_LEVEL]);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/AndroidSettings.resx", "/root/data[@name='ApkPath']/value", APK_PATH);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/AndroidSettings.resx", "/root/data[@name='DeviceIdentifier']/value", fullAvdName);
+    XmlPoke($"{Project.AcceptanceTestsPath}/Settings/GlobalSettings.resx", "/root/data[@name='Platform']/value", "Android");
+    
+    MSBuild(Project.AcceptanceTests, new MSBuildSettings().SetConfiguration(CONFIGURATION));
+    DotNetCoreTest(Project.AcceptanceTests, new DotNetCoreTestSettings { NoBuild = true, Logger = "trx", Configuration = CONFIGURATION });
+
+    Information("Emulator will be killed");
+    Adb($"-s {DEVICE_SERIAL} emu kill");
+    EMULATOR_PROCESS?.Kill();
 });
 
 Task("ReportBuildWarningsToVsts")
