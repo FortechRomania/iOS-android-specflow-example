@@ -25,9 +25,7 @@ jobs:
 
   - template: templates/install-cake.yml 
 
-  - script: |
-       sudo chmod +x xamarin_sdk_version.sh
-       ./xamarin_sdk_version.sh
+  - script: ./xamarin_sdk_version.sh
     displayName: 'Pin Xcode / Xamarin / Mono versions'
 
   - task: CmdLine@2

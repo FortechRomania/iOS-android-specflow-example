@@ -44,11 +44,6 @@ public static class Project
     public static string AcceptanceTests = $"{AcceptanceTestsPath}/IosAndroidSpecflowExample.csproj";
 }
 
-public static class ApplicationsInfo
-{
-    public static string iOSAppName = "AcquaintanceNativeiOS-shortlist.app";
-}
-
 Task("Clean")
 .Does(() => {
     var buildSettings = new MSBuildSettings()

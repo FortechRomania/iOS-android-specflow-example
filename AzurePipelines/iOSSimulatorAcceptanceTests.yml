@@ -27,9 +27,7 @@ jobs:
       packageType: 'sdk'
       version: '3.0.100'
 
-  - script: |
-       sudo chmod +x xamarin_sdk_version.sh
-       ./xamarin_sdk_version.sh
+  - script: ./xamarin_sdk_version.sh
     displayName: 'Pin Xcode / Xamarin / Mono versions'
 
   - script: |
