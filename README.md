@@ -24,6 +24,11 @@ Android Acceptance Tests
 * [Specflow](https://specflow.org/documentation/)
 * [Specflow Discussion](http://groups.google.com/group/SpecFlow)
 
+### Cake
+* [Cake](https://cakebuild.net/)
+* [build.cake](https://github.com/FortechRomania/iOS-android-specflow-example/blob/master/build.cake)
+* [Cake - Visual Studio Code](https://cakebuild.net/docs/editors/vscode)
+
 ### Azure Pipelines
 * [Azure Devops](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops)
 * [GitHub repositories](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml)
