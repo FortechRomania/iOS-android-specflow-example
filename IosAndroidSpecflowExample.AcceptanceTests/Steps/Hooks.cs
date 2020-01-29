@@ -60,7 +60,7 @@ namespace IosAndroidSpecflowExample.Steps
         [BeforeScenario]
         public void BeforeScenario()
         {
-            TestLogger.CurrentTextWriter = TestContext.Out;
+            TestLogger.CurrentTextWriter = TestContext.Progress;
 
             AppiumManager.ResetApp();
         }
@@ -92,7 +92,8 @@ namespace IosAndroidSpecflowExample.Steps
 
         private static void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
         {
-            TestLogger.WriteLine(e.Data);
+            TestLogger.WriteLineToConsoleOutput(e.Data);
+            TestLogger.WriteLineToTestOutput(e.Data);
         }
     }
 }
