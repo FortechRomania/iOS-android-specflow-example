@@ -9,9 +9,16 @@ namespace IosAndroidSpecflowExample.Helpers
     {
         public static TextWriter CurrentTextWriter { get; set; }
 
-        public static void WriteLine(string line)
+        public static void WriteLineToTestOutput(string line)
         {
-            (CurrentTextWriter ?? TestContext.Out).WriteLine($"{DateTime.Now} {line}");
+            (CurrentTextWriter ?? TestContext.Progress).WriteLine(LineWithTimeInformation(line));
         }
+
+        public static void WriteLineToConsoleOutput(string line)
+        {
+            Console.Out.WriteLine(LineWithTimeInformation(line));
+        }
+
+        private static string LineWithTimeInformation(string line) => $"{DateTime.Now} {line}";
     }
 }
