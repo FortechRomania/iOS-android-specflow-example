@@ -1,4 +1,4 @@
-XCODE_PATH="/Applications/Xcode_10.3.app"
+XCODE_PATH="/Applications/Xcode_11.3.1.app"
 MONO_VERSION="6.6.0"
 XAMARIN_IOS_VERSION="13.4.0.2"
 XAMARIN_ANDROID_VERSION="9.0.0-20"

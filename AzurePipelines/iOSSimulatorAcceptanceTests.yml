@@ -45,7 +45,7 @@ jobs:
   - task: CmdLine@2
     displayName: 'Invoke Cake'
     inputs:
-      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPhone 8" --app-path="$(System.DefaultWorkingDirectory)/apps/AcquaintNativeiOS-shortlist.app/"'
+      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=13.3 --sim-name="iPhone 8" --app-path="$(System.DefaultWorkingDirectory)/apps/AcquaintNativeiOS-shortlist.app/"'
     continueOnError: true
 
   - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
