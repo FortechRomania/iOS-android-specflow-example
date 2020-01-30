@@ -1,4 +1,5 @@
-﻿using IosAndroidSpecflowExample.Helpers;
+﻿using IosAndroidSpecflowExample.Extensions;
+using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects;
@@ -30,17 +31,17 @@ namespace IosAndroidSpecflowExample.Pages
         public void FillInRequiredFields(string firstName, string lastName)
         {
             _firstNameFieldElement.Clear();
-            _firstNameFieldElement.Click();
+            _firstNameFieldElement.FastClick();
             _firstNameFieldElement.SendKeys(firstName);
 
             _lastNameFieldElement.Clear();
-            _lastNameFieldElement.Click();
+            _lastNameFieldElement.FastClick();
             _lastNameFieldElement.SendKeys(lastName);
         }
 
         public void TapOnSaveButton()
         {
-            _saveButtonElement.Click();
+            _saveButtonElement.FastClick();
         }
 
         public void WaitUntilPageLoads()

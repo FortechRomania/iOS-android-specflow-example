@@ -1,4 +1,5 @@
-﻿using IosAndroidSpecflowExample.Helpers;
+﻿using IosAndroidSpecflowExample.Extensions;
+using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects;
@@ -27,13 +28,13 @@ namespace IosAndroidSpecflowExample.Pages
             {
                 Helper.WaitFor(() => _alertConfirmationModal.FindElementByAccessibilityId("Delete").Displayed);
 
-                _alertConfirmationModal.FindElementByAccessibilityId("Delete").Click();
+                _alertConfirmationModal.FindElementByAccessibilityId("Delete").FastClick();
             }
             else
             {
                 Helper.WaitFor(() => _deleteButton.Displayed);
 
-                _deleteButton.Click();
+                _deleteButton.FastClick();
             }
         }
     }

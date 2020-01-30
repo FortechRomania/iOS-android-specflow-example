@@ -1,4 +1,5 @@
-﻿using IosAndroidSpecflowExample.Helpers;
+﻿using IosAndroidSpecflowExample.Extensions;
+using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
 using OpenQA.Selenium.Appium.PageObjects;
@@ -31,9 +32,9 @@ namespace IosAndroidSpecflowExample.Pages
             PageFactory.InitElements(Driver, this, new AppiumPageObjectMemberDecorator());
         }
 
-        public void TapOnEditAcquintanceButton() => _editAcquintanceButton.Click();
+        public void TapOnEditAcquintanceButton() => _editAcquintanceButton.FastClick();
 
-        public void TapOnDeleteAcquintanceButton() => _deleteAcquintanceButton.Click();
+        public void TapOnDeleteAcquintanceButton() => _deleteAcquintanceButton.FastClick();
 
         public string GetToolbarTitle() => _toolbar.Text;
 
@@ -46,7 +47,7 @@ namespace IosAndroidSpecflowExample.Pages
         {
             if (Platform == PlatformEnum.IOS)
             {
-                _backToAcquaintanceListButton.Click();
+                _backToAcquaintanceListButton.FastClick();
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using IosAndroidSpecflowExample.Extensions;
 using IosAndroidSpecflowExample.Helpers;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Interfaces;
@@ -30,7 +31,7 @@ namespace IosAndroidSpecflowExample.Pages
         public void TapOnAddAcquaintanceButton()
         {
             Helper.WaitFor(() => _addAcquaintanceButton.Displayed);
-            _addAcquaintanceButton.Click();
+            _addAcquaintanceButton.FastClick();
         }
 
         public void TapOnAcquaintance(string formattedAcquaintanceName)
@@ -39,7 +40,7 @@ namespace IosAndroidSpecflowExample.Pages
             {
                 if (GetNameOfAcquaintanceAtIndex(i).Contains(formattedAcquaintanceName))
                 {
-                    _iosAcquaintances[i].Click();
+                    _iosAcquaintances[i].FastClick();
                     break;
                 }
             }
