@@ -30,8 +30,11 @@ namespace IosAndroidSpecflowExample.Pages
         public void FillInRequiredFields(string firstName, string lastName)
         {
             _firstNameFieldElement.Clear();
+            _firstNameFieldElement.Click();
             _firstNameFieldElement.SendKeys(firstName);
+
             _lastNameFieldElement.Clear();
+            _lastNameFieldElement.Click();
             _lastNameFieldElement.SendKeys(lastName);
         }
 
