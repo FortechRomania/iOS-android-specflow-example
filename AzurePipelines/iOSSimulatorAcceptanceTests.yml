@@ -37,15 +37,15 @@ jobs:
       sudo npm install -g n
       sudo n 11.13.0
       
-      npm install appium@1.14.0 -g
-    displayName: 'Install Appium 1.14.0'
+      npm install appium@1.16.0 -g
+    displayName: 'Install Appium 1.16.0'
 
   - template: templates/install-cake.yml
 
   - task: CmdLine@2
     displayName: 'Invoke Cake'
     inputs:
-      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPad Air 2" --app-path="$(System.DefaultWorkingDirectory)/apps/AcquaintNativeiOS-shortlist.app/"'
+      script: 'dotnet-cake --target=iOSSimulatorAcceptanceTests --ios-version=12.4 --sim-name="iPhone 8" --app-path="$(System.DefaultWorkingDirectory)/apps/AcquaintNativeiOS-shortlist.app/"'
     continueOnError: true
 
   - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
