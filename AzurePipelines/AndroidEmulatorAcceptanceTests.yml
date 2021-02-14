@@ -43,7 +43,7 @@ jobs:
   - task: tsuyoshiushio.shell-exec.shellexec.shellexec@0
     displayName: 'Install Android Studio for skins'
     inputs:
-      code: 'HOMEBREW_NO_AUTO_UPDATE=1 brew cask install android-studio'
+      code: 'HOMEBREW_NO_AUTO_UPDATE=1 brew install android-studio'
 
   - template: templates/install-cake.yml
 
