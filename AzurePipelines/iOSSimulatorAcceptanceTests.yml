@@ -18,7 +18,7 @@ jobs:
   workspace:
     clean: all
   pool:
-    name: Hosted macOS
+    vmImage: macOS-10.15
 
   steps:
   - task: UseDotNet@2
